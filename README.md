@@ -1,82 +1,85 @@
 # Venturi aerator — 6-throat open-ended microbubble injector
 
-A printable Venturi aerator for the **VIVOHOME 120 W 2700 GPH** pump, modelled in
-SolidCraft as a fully parametric design (79 named parameters, 112 features).
-The current, recommended build is **`Venturi-Aerator-v4-open-ended`**: fine-bubble
-throats, metered air, and an open flared discharge for submerged use.
+A printable Venturi aerator for a **1400 GPH** pump, modelled in SolidCraft as a
+fully parametric design (79 named parameters, 112 features). The current,
+recommended build is **`Venturi-Aerator-v5-open-ended`**: smaller throats and a
+smaller air meter than v4 so the venturi still reaches fine-bubble velocity at
+the lower flow.
 
-![iso view](images/V4-open-ended-iso.png)
+![iso view](images/V5-open-ended-iso.png)
 
 ## Specs
 
 | | |
 |---|---|
+| Design pump | **1400 GPH** (see the curve assumption below) |
 | Inlet | 1" hose barb, 20 mm bore, rounded clamp ridges |
-| Outlet | **Open** flared bowl (no top barb): floor at z = 83.36, rim at z ≈ 91.4, Ø ≈ 40 mm clear aperture around the post |
-| Air inlet | 3/16" barb at 45°, Ø3.0 feed bore with a **Ø0.7 metering orifice** |
-| Throats | 6 × **Ø4.5 mm × 13.5 mm** (3 × d) on a 14 mm ring |
+| Outlet | **Open** flared bowl (no top barb): floor z = 86.70, rim z ≈ 94.7, Ø ≈ 40 mm clear aperture around the post |
+| Air inlet | 3/16" barb at 45°, Ø3.0 feed bore with a **Ø0.5 metering orifice** |
+| Throats | 6 × **Ø3.25 mm × 9.75 mm** (3 × d) on a 14 mm ring |
 | Nozzle / diffuser | 10° / 10° half-angle |
-| Air injection | 36 × **Ø0.8 mm** holes — 6 per throat, 3 diametral pairs — at 20 % of the throat length |
+| Air injection | 36 × **Ø0.6 mm** holes — 6 per throat, 3 diametral pairs — at 20 % of the throat length |
 | Air chamber | Ø42 internal cavity around the throat tubes |
-| Impingement | Ø12 cone, apex z = 97.35, base z = 84.36, standing in the open bowl |
+| Impingement | Ø12 cone, apex z = 100.69, base z = 87.70, standing in the open bowl |
 | Housing | Ø52 mm, r6 fillets, 5 mm wall over the air chamber |
 | Tube roots | 1.5–1.8 mm 45° bevels where the throats meet the air-chamber ceiling |
 | Print aids | 1.0 mm plenum-roof cove and 0.5 mm inlet-barb shoulder chamfers |
 | Flow arrow | Raised 1.0 mm arrow on the barrel, inlet → outlet |
-| Printable size | Ø52 × 97.35 mm (the discharge post is the highest point) |
-| Volume / mass | **97,671.8 mm³ / 126.0 g** in PETG |
+| Printable size | Ø52 × 100.69 mm (the discharge post is the highest point) |
+| Volume / mass | **107,715.7 mm³ / 139.0 g** in PETG |
 | Source | 79 parameters, 112 timeline features, no magic numbers in the features |
 
-![outlet detail](images/V4-open-ended-outlet-detail.png)
+![outlet detail](images/V5-open-ended-outlet-detail.png)
 
 ## Pump curve and operating point
 
-The 2700 GPH figure is the *zero-head* rating. The VIVOHOME 120 W pump's
-published curve is:
+The 2700 GPH rating was the *zero-head* figure of the old pump. For the 1400 GPH
+pump no published curve was available, so the design assumes its curve has the
+same shape as the old one, scaled by 1400/2700 ≈ 0.519:
 
 | Head (ft) | 0 | 1.6 | 3.3 | 4.9 | 6.6 | 8.2 | 9.8 | 11.5 | 13.1 | 15 |
 |---|---|---|---|---|---|---|---|---|---|---|
-| Flow (GPH) | 2700 | 2325 | 1982 | 1638 | 1295 | 978 | 700 | 462 | 264 | 0 |
+| Flow (GPH) | 1400 | 1206 | 1028 | 849 | 671 | 507 | 363 | 240 | 137 | 0 |
 
-Solving that curve against the six-throat restriction puts the real operating
-point near **957 GPH**, not 2700 GPH: throat velocity ≈ **10.5 m/s**, throat
-static pressure ≈ **66 kPa absolute**. The earlier Ø5.5 design would run near
-1161 GPH at 8.6 m/s, so the smaller throats trade about 18 % of flow for a
-substantially finer plume.
+If you have the real curve for your pump, it is worth re-running this sizing —
+the throat area should be chosen so the throat velocity stays near 10.5 m/s.
 
-Bubble size is estimated from the pressure drop available for air breakup:
-the Ø4.5 throats give a maximum stable bubble diameter on the order of
-**87 µm**, versus ≈112 µm at Ø5.5. Going smaller helps only marginally and
-costs flow, so Ø4.5 is the recommended compromise.
+Solving that curve against the six-throat restriction puts v5 near **498 GPH**
+at **≈2.5 m** of head, with throat velocity **10.53 m/s** and throat static
+pressure ≈ **66 kPa absolute** — essentially the same throat conditions the
+v4 design had at 957 GPH on the bigger pump. The resulting estimated maximum
+stable bubble diameter is again on the order of **87 µm**.
 
-| `D_throat` | Flow (GPH) | Throat velocity | Est. max bubble |
+Leaving v4's Ø4.5 throats on the 1400 GPH pump would drop the velocity to
+≈8.6 m/s and weaken the air draw, which is why the throats were reduced.
+
+| `D_throat` (6 throats) | Flow (GPH) | Throat velocity | Est. max bubble |
 |---|---|---|---|
-| 5.5 mm | 1161 | 8.57 m/s | 112 µm |
-| **4.5 mm (current)** | **957** | **10.54 m/s** | **87 µm** |
-| 4.0 mm | 830 | 11.58 m/s | 78 µm |
-| 3.5 mm | 691 | 12.58 m/s | 71 µm |
+| 4.5 mm (v4) | 781 | 8.61 m/s | ~106 µm |
+| 4.0 mm | 673 | 9.38 m/s | ~98 µm |
+| 3.5 mm | 557 | 10.15 m/s | ~90 µm |
+| **3.25 mm (v5)** | **498** | **10.53 m/s** | **~87 µm** |
+| 3.0 mm | 441 | 10.92 m/s | ~84 µm |
+| 2.75 mm | 383 | 11.31 m/s | ~81 µm |
 
-The original air path was heavily over-fed: a Ø3.0 feed bore plus 36 × Ø1 holes
-could admit roughly as much air (by volume) as water. A **Ø0.7 metering orifice**
-in the air barb cuts the feed area about **18×**, so the holes behave as fine
-injectors instead of a froth generator. The air barb is set back with an 8 mm
-web and a 2 mm land so the orifice is a real restriction, not a leak around the
-joint.
+The air path was scaled with the water flow: the Ø0.7 → **Ø0.5 mm** meter keeps
+the same air-orifice-to-throat-area ratio as v4, and the Ø0.8 → **Ø0.6 mm**
+holes keep the same hole-to-throat proportion. A Ø0.5 mm orifice is small for
+FDM; if it prints closed or the throats sound air-starved, try Ø0.55–0.6 mm.
+Too large, and the plume goes back to coarse froth.
 
-![air barb section](images/V4-open-ended-section.png)
+![air barb section](images/V5-open-ended-section.png)
 
 ## Open discharge
 
 The collector and top hose barb are cut away, leaving a flared bowl around the
 impingement cone. Water leaves over the rim around the post: net discharge area
-is about **1240 mm²**, so exit velocity is ≈0.8 m/s at 957 GPH, rather than
-≈3.2 m/s through the old Ø20 outlet. That corresponds to only about **0.5 m** of
-dynamic head recovered — the earlier claim of 3.5–4 m was based on the nameplate
-flow and was overstated. The open end is intended for **submerged discharge**;
-it keeps the six throats, air metering and flow arrow and drops only the top
-fitting.
+is about **1240 mm²**, so at 498 GPH the exit velocity is ≈0.4 m/s rather than
+≈1.7 m/s through the old Ø20 outlet — about 0.14 m of dynamic head. The open
+end is intended for **submerged discharge**; it keeps the six throats, air
+metering and flow arrow and drops only the top fitting.
 
-![open top](images/V4-open-ended-top.png)
+![open top](images/V5-open-ended-top.png)
 
 ## Printing
 
@@ -89,19 +92,20 @@ ceiling. The plenum rim gets a 1.0 mm 45° cove; the air-chamber ceiling perimet
 cannot take one because the tube-root bevels already reach the wall, so it stays
 a bridge between the wall and the six blended roots.
 
+Check the air meter and the 36 Ø0.6 holes after printing; the small orifices are
+the most likely feature to close over with a hot or under-cooled nozzle.
+
 ## Tuning
 
 `D_throat` is the first knob. Everything downstream follows it: throat length,
 nozzle and diffuser length, tube wall, air-hole height and air-barb position all
-recompute. The table above gives the expected flow/bubble trade. Below about
-Ø4.0 mm the pump loses too much flow and the throat approaches air-release /
-cavitation conditions, so Ø4.5 mm is the default.
+recompute. The table above gives the expected flow/bubble trade for the 1400 GPH
+pump; below about Ø3.0 mm the throttle costs too much flow.
 
-`D_air_meter` (0.7 mm) sets air flow; `D_air_hole` (0.8 mm) sets how finely it is
-distributed. Opening the meter too far reintroduces coarse, frothy bubbles;
-closing it starves the throats. `s_air_web` / `L_air_web` control the metering
-land. `A_conv` / `A_div`, `n_throat`, `R_ring`, `R_imp` / `L_imp` and
-`R_b2` / `L_b2` are the other useful knobs.
+`D_air_meter` (0.5 mm) sets air flow; `D_air_hole` (0.6 mm) sets how finely it is
+distributed. `s_air_web` / `L_air_web` control the metering land. `A_conv` /
+`A_div`, `n_throat`, `R_ring`, `R_imp` / `L_imp` and `R_b2` / `L_b2` are the other
+useful knobs.
 
 The flow arrow is parametric: `arrow_z`, `arrow_len`, `arrow_head`, `arrow_w`,
 `arrow_shaft_w`, `arrow_tip_w`, `arrow_rib`. `arrow_ang` is fixed at 270° (the
@@ -117,30 +121,33 @@ re-aiming the plane.
 - Two closed, valid bodies: main shell (113 faces) plus the flared lip (6 faces);
   no feature errors. Two legacy fillets (`FilletOut`, `AirBarbTip`) remain
   suppressed in the source design.
-- The exported STL is a single watertight shell (157,306 triangles). Six hidden
-  remnant bodies produced by the open-end cut are deleted in the final
+- The exported STL is a single watertight shell (144,234 triangles). Six hidden
+  remnant bodies produced by the open-end cut are deleted by the final
   `RemoveOpenEndFragments` feature, so they are not in the STEP/STL.
-- Ray checks: vertical axis hits the post apex at z = 97.35; at z = 90 a radial
-  ray reaches the lip at r ≈ 25.3; the bowl floor is z = 83.36 at r = 15–20.
-- Inherited from the fine-bubble inline design: all 36 air holes open into the
-  throats; the water bores pass a ray at r = 2.1 mm and block at r = 2.35 mm;
-  the air meter passes on-axis and blocks off-axis; the arrow stands 1.0 mm
-  proud of the barrel.
+- Ray checks: vertical axis hits the post apex at z = 100.69; at z = 92 a radial
+  ray reaches the lip at r ≈ 25.5; the bowl floor is z = 86.70 at r = 15.
+- All **36** air holes open into the throats (six directions × six throats); the
+  water bores pass a ray on the throat axis and block at the 1.62 mm wall; the
+  air meter passes on-axis and blocks 0.6 mm off-axis.
 
 ## Files
 
 ```
-cad/Venturi-Aerator-v4-open-ended.sc    current parametric source (rebuilds on open)
-cad/Venturi-Aerator-v4-open-ended.step  STEP
-stl/Venturi-Aerator-v4-open-ended.stl   printable mesh
-parameters-v4-open-ended.csv            all 79 named parameters
-images/V4-open-ended-*.png              renders and section
+cad/Venturi-Aerator-v5-open-ended.sc    current parametric source (rebuilds on open)
+cad/Venturi-Aerator-v5-open-ended.step  STEP
+stl/Venturi-Aerator-v5-open-ended.stl   printable mesh
+parameters-v5-open-ended.csv            all 79 named parameters
+images/V5-open-ended-*.png              renders and section
 
-cad/Venturi-Aerator-v3.sc               legacy inline source (Ø5.5, unmetered air)
-cad/Venturi-Aerator-v3-open.sc          legacy open source (z_open = 86.5)
-cad/Venturi-Aerator-v3*.step            legacy STEP exports
+cad/Venturi-Aerator-v4-open-ended.sc    legacy fine-bubble build for 2700 GPH pump
+cad/Venturi-Aerator-v4-open-ended.step
+stl/Venturi-Aerator-v4-open-ended.stl
+parameters-v4-open-ended.csv
+images/V4-open-ended-*.png
+
+cad/Venturi-Aerator-v3*.sc/.step        original Ø5.5 unmetered variants
 stl/Venturi-Aerator-v3*.stl             legacy printable meshes
-parameters*.csv                         legacy parameter exports
+parameters.csv / parameters-open.csv     legacy parameter exports
 images/AeratorV3-*.png                  legacy renders
 ```
 
@@ -157,8 +164,9 @@ deviations now include:
   clean with no visible effect.
 - The plenum-roof rim (1.0 mm) and inlet-barb shoulder (0.5 mm) chamfers are
   additions for printing; the SCAD leaves those edges sharp.
-- Throats reduced from Ø5.5 to Ø4.5, air holes from Ø1.0 to Ø0.8, and an Ø0.7
-  metering orifice added in the air barb for the pump's real operating point.
+- Throats reduced from Ø5.5 to Ø3.25, air holes from Ø1.0 to Ø0.6, and a Ø0.5
+  metering orifice added in the air barb to hold fine-bubble velocity on a
+  1400 GPH pump.
 - The top barb and collector are replaced by a flared open bowl sized for
   submerged discharge.
 
