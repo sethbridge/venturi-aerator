@@ -67,3 +67,11 @@ L_total,mm,z_top + L_barb,114.692050008,,false
 z_tip_out,mm,z_top + L_barb,114.692050008,,false
 z_bump1_out,mm,z_tip_out - z_bump1,109.192050008,,false
 z_bump2_out,mm,z_tip_out - z_bump2,101.192050008,,false
+arrow_ang,deg,270,270,,false
+arrow_z,mm,45 mm,45,,false
+arrow_len,mm,21 mm,21,,false
+arrow_head,mm,8 mm,8,,false
+arrow_w,mm,14 mm,14,,false
+arrow_shaft_w,mm,5.5 mm,5.5,,false
+arrow_tip_w,mm,1.2 mm,1.2,,false
+arrow_rib,mm,1.0,1,,false

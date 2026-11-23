@@ -1,7 +1,7 @@
 # Venturi aerator — 6-throat microbubble injector
 
 A printable multi-throat Venturi aerator for a **2700 GPH** pump, using SolidCraft as a fully parametric model
-(68 named parameters, no magic numbers in the features).
+(76 named parameters, no magic numbers in the features).
 
 ![iso view](images/AeratorV3-iso.png)
 
@@ -18,8 +18,11 @@ A printable multi-throat Venturi aerator for a **2700 GPH** pump, using SolidCra
 | Impingement | Ø12 × 14 mm cone in the outlet chamber |
 | Housing | Ø52 mm, r6 corner fillets, 5 mm wall over the air chamber |
 | Tube roots | 1.5–1.8 mm 45° bevels where the throat tubes meet the air-chamber ceiling (they add material at the re-entrant corner) |
+| Flow arrow | Raised 1.0 mm arrow on the barrel, pointing inlet → outlet |
 | Overall size | Ø52 × 114.7 mm tall |
-| Volume / mass | 96,987.1 mm³ / 125.1 g in PETG |
+| Volume / mass | 97,119.9 mm³ / 125.3 g in PETG |
+
+![flow arrow](images/AeratorV3-arrow-detail.png)
 
 ## How it works
 
@@ -52,17 +55,22 @@ air-barb position all recompute.
 
 | `D_throat` | Volume | Throat area |
 |---|---|---|
-| 5.0 mm | 100,644.1 mm³ | 117.8 mm² |
-| 5.5 mm | 96,987.1 mm³ | 142.5 mm² |
-| 6.0 mm | 93,166.0 mm³ * | 169.6 mm² |
+| 5.0 mm | 100,776.9 mm³ | 117.8 mm² |
+| 5.5 mm | 97,119.9 mm³ | 142.5 mm² |
+| 6.0 mm | 93,298.8 mm³ * | 169.6 mm² |
 
 \* At 6.0 mm the two 1.8 mm tube-root bevels no longer fit (the largest that
 fits there is 1.599 mm), so those features report an error and the volume is
 taken without them. Set all three bevels to 1.5 mm first: 6.0 mm then builds
-cleanly at 93,374.5 mm³ with all 36 air holes — or stay at 5.5 mm.
+cleanly at 93,507.3 mm³ with all 36 air holes — or stay at 5.5 mm.
 
 Other useful knobs: `A_conv` / `A_div` (cone angles), `n_throat`, `R_ring`,
 `D_air_hole`, `R_imp` / `L_imp` (impingement cone), `R_b2` / `L_b2` (air barb).
+
+The flow arrow is parametric too: `arrow_z`, `arrow_len`, `arrow_head`, `arrow_w`,
+`arrow_shaft_w`, `arrow_tip_w`, `arrow_rib`. `arrow_ang` is fixed at 270° (the
+front); the sketch plane's axes are numeric, so moving it to another side means
+re-aiming the plane.
 
 > Note: SolidCraft's `check_parameters` reports false fillet errors on this
 > model. Real parameter edits (`set_parameter`, `parameters.change`) rebuild
@@ -70,13 +78,15 @@ Other useful knobs: `A_conv` / `A_div` (cone angles), `n_throat`, `R_ring`,
 
 ## Verification
 
-- 1 closed body, 1 shell, 111 faces, no feature errors.
+- 1 closed body, 1 shell, 120 faces, no feature errors.
 - Water path: inlet bore open into the plenum; all six throat bores pass a ray at
   r = 2.70 mm and block at r = 2.85 mm; all six paths reach the collector.
 - Air chamber confirmed hollow (rays hit exactly r = 21 mm, floor 48.6, roof
   65.1); barb bore open, and all **36** air holes open into the throats
   (9 coaxial groups × 4 faces).
 - Axis ray stops on the impingement cone apex at z = 94.68.
+- Flow arrow stands 1.0 mm proud of the barrel (rays hit r = 27.0 on the arrow,
+  r = 26.0 beside it) and the air-barb envelope is unchanged.
 
 ![air barb section](images/AeratorV3-section-air.png)
 
@@ -86,7 +96,7 @@ Other useful knobs: `A_conv` / `A_div` (cone angles), `n_throat`, `R_ring`,
 cad/Venturi-Aerator-v3.sc      parametric source (rebuilds on open)
 cad/Venturi-Aerator-v3.step    STEP
 stl/Venturi-Aerator-v3.stl     printable mesh
-parameters.csv                 all 68 parameters
+parameters.csv                 all 76 parameters
 images/                        renders and sections
 ```
 
