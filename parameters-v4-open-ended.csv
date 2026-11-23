@@ -1,0 +1,80 @@
+name,unit,expression,value,comment,favorite
+n_throat,,6,6,,false
+D_throat,mm,4.5,4.5,,false
+A_conv,deg,10 deg,10,,false
+A_div,deg,10 deg,10,,false
+D_air_hole,mm,0.8,0.8,,false
+n_air_hole,,6,6,,false
+R_ring,mm,14 mm,14,,false
+R_ent,mm,5.5 mm,5.5,,false
+R_cav,mm,21 mm,21,,false
+gr,mm,5 mm,5,,false
+R_h,mm,R_cav + gr,26,,false
+R_bore,mm,10 mm,10,,false
+wall_t,mm,2.4 mm,2.4,,false
+R_fil,mm,6 mm,6,,false
+R_cham,mm,13 mm,13,,false
+L_barb,mm,20 mm,20,,false
+L_embed,mm,4 mm,4,,false
+R_b1,mm,12.2 mm,12.2,,false
+H_b1,mm,0.8 mm,0.8,,false
+W_b1,mm,5 mm,5,,false
+P_b1,mm,8 mm,8,,false
+F_b1,mm,3 mm,3,,false
+R_b1_tip,mm,1 mm,1,,false
+R_b2,mm,2.6 mm,2.6,,false
+H_b2,mm,0.5 mm,0.5,,false
+W_b2,mm,2.5 mm,2.5,,false
+P_b2,mm,4.5 mm,4.5,,false
+F_b2,mm,1.5 mm,1.5,,false
+R_b2_tip,mm,0.8 mm,0.8,,false
+L_b2,mm,15 mm,15,,false
+R_b2_bore,mm,1.5 mm,1.5,,false
+R_air_root,mm,18 mm,18,,false
+L_air_off,mm,5 mm,5,,false
+L_air_dz,mm,1 mm,1,,false
+A_air,deg,45 deg,45,,false
+R_imp,mm,6 mm,6,,false
+L_imp,mm,14 mm,14,,false
+L_in_ext,mm,2 mm,2,,false
+L_top_ext,mm,1 mm,1,,false
+ANG0,deg,180 / n_throat,30,,false
+L_throat,mm,3 * D_throat,13.5,,false
+L_conv,mm,(R_ent - D_throat/2) / tan(A_conv),18.4316659138,,false
+L_div,mm,(R_ent - D_throat/2) / tan(A_div),18.4316659138,,false
+R_tube,mm,D_throat/2 + wall_t,4.65,,false
+R_tan,mm,R_h - R_fil + R_fil*cos(45 deg),24.2426406871,,false
+z_bot,mm,L_barb,20,,false
+z_in,mm,z_bot + L_in_ext,22,,false
+L_fr,mm,R_cav - R_bore,11,,false
+z_n0,mm,z_in + L_fr,33,,false
+z_t0,mm,z_n0 + L_conv,51.4316659138,,false
+z_t1,mm,z_t0 + L_throat,64.9316659138,,false
+z_d1,mm,z_t1 + L_div,83.3633318275,,false
+z_top,mm,z_d1 + L_top_ext + (R_h - R_cham),97.3633318275,,false
+z_tan_bot,mm,z_bot + (R_h - R_cham),33,,false
+z_tan_top,mm,z_top - (R_h - R_cham),84.3633318275,,false
+z_mid,mm,(z_t0 + z_t1)/2,58.1816659138,,false
+z_air,mm,z_mid - L_air_dz,57.1816659138,,false
+z_hole,mm,z_t0 + 0.2*L_throat,54.1316659138,,false
+rho_b1,mm,(W_b1*W_b1/4 + H_b1*H_b1)/(2*H_b1),4.30625,,false
+R_bump1,mm,R_b1 + H_b1 - rho_b1,8.69375,,false
+z_bump1,mm,F_b1 + W_b1/2,5.5,,false
+z_bump2,mm,F_b1 + P_b1 + W_b1/2,13.5,,false
+t_ridge1,mm,L_air_off + L_b2 - (F_b2 + W_b2/2),17.25,,false
+t_ridge2,mm,L_air_off + L_b2 - (F_b2 + P_b2 + W_b2/2),12.75,,false
+L_total,mm,z_top + L_barb,117.363331828,,false
+z_tip_out,mm,z_top + L_barb,117.363331828,,false
+z_bump1_out,mm,z_tip_out - z_bump1,111.863331828,,false
+z_bump2_out,mm,z_tip_out - z_bump2,103.863331828,,false
+arrow_ang,deg,270,270,,false
+arrow_z,mm,45 mm,45,,false
+arrow_len,mm,21 mm,21,,false
+arrow_head,mm,8 mm,8,,false
+arrow_w,mm,14 mm,14,,false
+arrow_shaft_w,mm,5.5 mm,5.5,,false
+arrow_tip_w,mm,1.2 mm,1.2,,false
+arrow_rib,mm,1.0,1,,false
+D_air_meter,mm,0.7,0.7,,false
+s_air_web,mm,8,8,,false
+L_air_web,mm,2,2,,false
