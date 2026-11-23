@@ -56,10 +56,10 @@ air-barb position all recompute.
 | 5.5 mm | 96,987.1 mm³ | 142.5 mm² |
 | 6.0 mm | 93,166.0 mm³ * | 169.6 mm² |
 
-\* At 6.0 mm the two 1.8 mm tube-root chamfers no longer fit (the largest that
+\* At 6.0 mm the two 1.8 mm tube-root bevels no longer fit (the largest that
 fits there is 1.599 mm), so those features report an error and the volume is
-taken without them. Set all three chamfers to 1.5 mm before running a 6.0 mm
-throat, or keep 5.5 mm.
+taken without them. Set all three bevels to 1.5 mm first: 6.0 mm then builds
+cleanly at 93,374.5 mm³ with all 36 air holes — or stay at 5.5 mm.
 
 Other useful knobs: `A_conv` / `A_div` (cone angles), `n_throat`, `R_ring`,
 `D_air_hole`, `R_imp` / `L_imp` (impingement cone), `R_b2` / `L_b2` (air barb).
