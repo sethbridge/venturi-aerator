@@ -18,8 +18,9 @@ A printable multi-throat Venturi aerator for a **2700 GPH** pump, ported from
 | Air chamber | Ø42 × 16.5 mm internal cavity around the throat tubes |
 | Impingement | Ø12 × 14 mm cone in the outlet chamber |
 | Housing | Ø52 mm, r6 corner fillets, 5 mm wall over the air chamber |
+| Tube roots | 1.5–1.8 mm 45° bevels where the throat tubes meet the air-chamber ceiling (they add material at the re-entrant corner) |
 | Overall size | Ø52 × 114.7 mm tall |
-| Volume / mass | 96,654.5 mm³ / 124.7 g in PETG |
+| Volume / mass | 96,987.1 mm³ / 125.1 g in PETG |
 
 ## How it works
 
@@ -52,9 +53,14 @@ air-barb position all recompute.
 
 | `D_throat` | Volume | Throat area |
 |---|---|---|
-| 5.0 mm | 100,326.1 mm³ | 117.8 mm² |
-| 5.5 mm | 96,654.5 mm³ | 142.5 mm² |
-| 6.0 mm | 93,124.3 mm³ | 169.6 mm² |
+| 5.0 mm | 100,644.1 mm³ | 117.8 mm² |
+| 5.5 mm | 96,987.1 mm³ | 142.5 mm² |
+| 6.0 mm | 93,166.0 mm³ * | 169.6 mm² |
+
+\* At 6.0 mm the two 1.8 mm tube-root chamfers no longer fit (the largest that
+fits there is 1.599 mm), so those features report an error and the volume is
+taken without them. Set all three chamfers to 1.5 mm before running a 6.0 mm
+throat, or keep 5.5 mm.
 
 Other useful knobs: `A_conv` / `A_div` (cone angles), `n_throat`, `R_ring`,
 `D_air_hole`, `R_imp` / `L_imp` (impingement cone), `R_b2` / `L_b2` (air barb).
@@ -65,11 +71,12 @@ Other useful knobs: `A_conv` / `A_div` (cone angles), `n_throat`, `R_ring`,
 
 ## Verification
 
-- 1 closed body, 1 shell, 105 faces, no feature errors.
+- 1 closed body, 1 shell, 111 faces, no feature errors.
 - Water path: inlet bore open into the plenum; all six throat bores pass a ray at
   r = 2.70 mm and block at r = 2.85 mm; all six paths reach the collector.
 - Air chamber confirmed hollow (rays hit exactly r = 21 mm, floor 48.6, roof
-  65.1); barb bore and all 36 holes open into the throats.
+  65.1); barb bore open, and all **36** air holes open into the throats
+  (9 coaxial groups × 4 faces).
 - Axis ray stops on the impingement cone apex at z = 94.68.
 
 ![air barb section](images/AeratorV3-section-air.png)
