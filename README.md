@@ -1,7 +1,6 @@
 # Venturi aerator — 6-throat microbubble injector
 
-A printable multi-throat Venturi aerator for a **2700 GPH** pump, ported from
-`venturi_aerator_v3.scad` into SolidCraft as a fully parametric model
+A printable multi-throat Venturi aerator for a **2700 GPH** pump, using SolidCraft as a fully parametric model
 (68 named parameters, no magic numbers in the features).
 
 ![iso view](images/AeratorV3-iso.png)
